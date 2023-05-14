@@ -1,0 +1,28 @@
+# Author: Abdul Basith
+# # Created on: 25/01/2022
+# # Requested by : Jayendra Patel
+# # Purpose: To launch uat containers
+# # --------------------------------------- #
+
+
+version: "3"
+services:
+  airflow:
+    image: "airflow_image_proc"
+    #pull_policy: always
+    build: .
+    container_name: airflow_image_proc
+    restart: on-failure
+    privileged: true
+    network_mode: bridge
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    ports:
+      - "9090:8080"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/resolv.conf:/etc/resolv.conf:rw
+      - /home/bobjacob/sandbox/project01/image_processing/dags:/opt/airflow/dags:rw
+      - /home/bobjacob/sandbox/project01/image_processing/logs:/opt/airflow/logs:rw
+    tty: true
+
