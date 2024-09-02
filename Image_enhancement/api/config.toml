@@ -1,0 +1,34 @@
+[db]
+    name = "db"
+[content_processing_api]
+    url="http://192.168.131.114:8090/content_service/V1/update_data"
+    hash_url="http://192.168.131.114:8090/content-service/v1/update-hashvalue?product_id="
+[NFS_path]
+    path='/var/log/images_bkp'
+    image_folder='/var/log/images_bkp/new_images/'
+    models_path='/opt/airflow/models'
+[mysql]
+    host="192.168.13.90"
+    username="web_app"
+    password="!5@uGuST1($7FrEe1Ndi@"
+[secret]
+    value="36f7yvyufrse346fug7td5s3wseecfygvy9g5"
+[mongo]
+    host="mongodb://192.168.24.91:27017/"
+    db="db_product"
+    collection="tbl_catalogue_details"
+    collection_category="category_catalogue_details"
+    username="content_process"
+    password="C0nTent_pR0$3S"
+    auth_db="admin"
+[mysql_17_132]
+    host="192.168.17.132"
+    host_master="192.168.131.29"
+    username="web_app"
+    password="!5@uGuST1($7FrEe1Ndi@"
+[LOGS]
+    url="http://192.168.131.109/logs/logs.php"
+[FUPLOAD_API]
+    url="http://192.168.20.160/common_upload/fupload.php"
+[COMPANY_DETAILS]
+    url="http://192.168.8.12:9001/web_services/CompanyDetails.php"
