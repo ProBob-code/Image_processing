@@ -1,0 +1,31 @@
+# Author: Abdul Basith
+# # Created on: 25/01/2022
+# # Requested by : Jayendra Patel
+# # Purpose: To launch uat containers
+# # --------------------------------------- #
+
+
+version: "3"
+services:
+  content_processing_pp:
+    image: "content_processing"
+    #pull_policy: always
+    build: .
+    container_name: content_processing_pp
+    restart: on-failure
+    privileged: true
+    network_mode: bridge
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    ports:
+      - "7080:8080"
+      - "7081:8081"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/resolv.conf:/etc/resolv.conf:rw
+      - /home/pratikp/sandbox/project01/content_processing/dags:/opt/airflow/dags:rw
+      - /home/pratikp/sandbox/project01/content_processing/logs:/opt/airflow/logs:rw
+      - /home/pratikp/sandbox/project01/content_processing/api:/opt/airflow/api:rw
+      - /home/pratikp/sandbox/project01/content_processing/models:/opt/airflow/models:rw
+    tty: true
+

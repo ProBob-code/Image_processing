@@ -1,0 +1,33 @@
+# Author: Abdul Basith
+# # Created on: 21/02/2024
+# # Requested by : Jayendra Patel
+# # Purpose: To launch uat containers
+# # Created by: Bob Jacob
+# # --------------------------------------- #
+
+version: "3"
+services:
+  content_processing_bob_test_2:
+    image: "content_processing_bob_test_2"
+    #pull_policy: always
+    build: .
+    container_name: content_processing_bob_test_2
+    restart: on-failure
+    privileged: true
+    network_mode: bridge
+    # environment:
+    #  AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    ports:
+    #  - "3080:8080"
+      # - "4080:4081"
+      - "7070:7071"
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /etc/resolv.conf:/etc/resolv.conf:rw
+      - /home/bobjacob/sandbox/content_processing/dags:/opt/airflow/dags:rw
+      - /home/bobjacob/sandbox/content_processing/logs:/opt/airflow/logs:rw
+      - /home/bobjacob/sandbox/content_processing/api:/opt/airflow/api:rw
+      - /home/bobjacob/sandbox/content_processing/models:/opt/airflow/models:rw
+
+    tty: true
+
