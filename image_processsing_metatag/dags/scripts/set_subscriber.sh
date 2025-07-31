@@ -36,6 +36,6 @@ ps aux | grep "python3 ${subscriber_file}" | egrep -v 'grep | set_subscriber' | 
 for i in `seq 1 $con_cnt`
         do
         echo "cd ${dir_path} && PYTHONENCODING=utf-8 python3.9 ${subscriber_file}"
-        cd ${dir_path} && PYTHONENCODING=utf-8 python3 ${subscriber_file} >> /tmp/${logfile}.log 2>&1 &        
+        cd ${dir_path} && PYTHONENCODING=utf-8 python3.9 ${subscriber_file} >> /tmp/${logfile}.log 2>&1 &        
         done
 fi

@@ -8,3 +8,7 @@
 
 [content_processing_api]
     url="http://192.168.12.28:8090/content_service/V1/update_data"
+    
+[NFS_path_sandbox]
+    path='/run/user/1000/gvfs/sftp:host=192.168.40.172,user=bobjacob/home/bobjacob/sandbox/images_bkp'
+    image_folder='/run/user/1000/gvfs/sftp:host=192.168.40.172,user=bobjacob/home/bobjacob/sandbox/images_bkp/new_images/'

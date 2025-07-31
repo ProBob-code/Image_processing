@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "starting crond"
+crond
+
 echo "Initializing the Airflow DB"
 airflow db init
 

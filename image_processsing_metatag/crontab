@@ -1,0 +1,7 @@
+# */15 * * * * /bin/bash /opt/airflow/dags/scripts/set_subscriber_new.sh prod subscriber.py 6 meta_process 7
+#*/15 * * * * /bin/bash /opt/airflow/dags/scripts/set_subscriber_new.sh prod priority_subscriber.py 2 p.meta_process 7
+#*/15 * * * * curl http://192.168.12.28:8090/content_service/V1/fetch-all?batch=0&limit=25
+#*/15 * * * * curl http://192.168.12.28:8090/content_service/V1/fetch-all?batch=0&limit=100&queue=p
+# * * * * * python3.9 /opt/airflow/api/classes/manage_logs.py
+*/1 * * * * cd /opt/airflow/api/ && sh run_script.sh >> /var/log/cron_new.log 2>&1
+# * * * * * root echo "Hello World" >> /opt/airflow/api/cron.log 2>&1

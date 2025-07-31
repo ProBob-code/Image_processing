@@ -3,37 +3,43 @@ import os
 from PIL import Image
 from pathlib import Path
 import cv2 as cv2
+from src.libs.helpers import getConfigData
 
 
 class Cleaning():
 
-    @staticmethod
-    def removeImages(c):
-        #identify the image path
-        NFS_path = '/var/log/images_bkp'
-        list_images = str(NFS_path) + '/new_images'
-        new_list_images = c
-        
-        #identify only the files with the below mentioned extensions
-        images = [f for f in os.listdir(list_images) if f.lower().endswith(('.jpg', '.png', '.jpeg','.JPG','.gif'))]
-        new_images = [f for f in os.listdir(new_list_images) if f.lower().endswith(('.jpg', '.png', '.jpeg','.JPG','.gif'))]
-        print(new_images)
+    # @staticmethod
+    # def removeImages(file_path):
+    #     if file_path:
+    #         try:
+    #             os.remove(file_path)
+    #         except OSError as e:
+    #             print(f"Error while removing the file: {e}")
+    #     else:
+    #         print("File was corrupt. Skipping removal.")
 
-        #remove the files
-        for i in range(len(images)):
-            file_to_remove = list_images+'/'+images[i]
+    @staticmethod
+    def removeImages(d):
+        new_list_images = d
+        file_to_remove = new_list_images
+        if file_to_remove:
             try:
                 os.remove(str(file_to_remove))
-            except:
-                print('All working fine')
+            except OSError as e:
+                print(f"This image got deleted already: {e}")
+        else:
+            print("File was corrupt. Skipping removal.")
 
-        #if the images are moved to new file path then this cleaning loop will work
-        for i in range(len(new_images)):
-            new_file_to_remove = new_list_images+new_images[i]
-            try:
-                os.remove(str(new_file_to_remove))
-                
-            except:
-                print('Thank you, all working fine')
+
+    
+    @staticmethod
+    def remove_resize_images():
+        image_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+        path = getConfigData('NFS_path.path')
+        # new_list_images = c
+        for file_name in os.listdir(path):
+            file_path = os.path.join(path, file_name)
+            if os.path.isfile(file_path) and any(file_name.lower().endswith(ext) for ext in image_extensions):
+                os.remove(file_path)     
 
     

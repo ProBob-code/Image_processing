@@ -1,28 +1,35 @@
 # Author: Abdul Basith
-# # Created on: 25/01/2022
+# # Created on: 21/02/2024
 # # Requested by : Jayendra Patel
 # # Purpose: To launch uat containers
+# # Created by: Bob Jacob
 # # --------------------------------------- #
-
 
 version: "3"
 services:
-  airflow:
-    image: "airflow_image_proc"
+  content_processing_bob_final:
+    image: "content_processing_bob_final"
     #pull_policy: always
     build: .
-    container_name: airflow_image_proc
+    container_name: content_processing_bob_final
     restart: on-failure
     privileged: true
     network_mode: bridge
-    environment:
-      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    # environment:
+    #  AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     ports:
-      - "9090:8080"
+    #  - "3080:8080"
+      # - "4080:4081"
+      - "4050:4051"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /etc/resolv.conf:/etc/resolv.conf:rw
-      - /home/bobjacob/sandbox/project01/image_processing/dags:/opt/airflow/dags:rw
-      - /home/bobjacob/sandbox/project01/image_processing/logs:/opt/airflow/logs:rw
+      - /home/bobjacob/sandbox/content_processing/dags:/opt/airflow/dags:rw
+      - /home/bobjacob/sandbox/content_processing/logs:/opt/airflow/logs:rw
+      - /home/bobjacob/sandbox/content_processing/api:/opt/airflow/api:rw
+      - /home/bobjacob/sandbox/content_processing/models:/opt/airflow/models:rw
+      - /var/log/images/video_input:/var/log/images/video_input:rw
+      - /var/log/images/video_output:/var/log/images/video_output:rw
+
     tty: true
 
