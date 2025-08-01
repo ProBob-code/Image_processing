@@ -1,0 +1,21 @@
+[rabbitmq]
+    name="rabbitmq"
+    server="192.168.29.137"
+    username="guest"
+    password="guest"
+    port="5672"
+    host = "content_processing"
+
+[content_processing_api]
+    url="http://192.168.12.28:8090/content-service/v1/update-data"
+    hash_url="http://192.168.12.28:8090/content-service/v1/update-hashvalue?product_id="
+    
+[NFS_path]
+    path='/var/log/images_bkp'
+    image_folder='/var/log/images_bkp/new_images/'
+    
+[mysql]
+    host="192.168.13.90"
+    username="user_content_service"
+    password="mAm6l0jXu11tEMT8gfY"    
+
